@@ -1,3 +1,8 @@
+@font-face {
+    font-family: 'Poppins';
+    src: url(/src/fonts/Poppins-Regular.ttf);
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -20,11 +25,42 @@ body {
     background: linear-gradient(rgba(46, 46, 46, 1),rgba(36, 36, 36, 0.87));
     box-shadow: 4px 6px 16px black;  
     display: flex;
+    gap: 70px;
     flex-direction: column;
+    padding: 85px 50px 15px 50px;
+    color: #FFFFFF;
+    font-size: 64px;
+    font-family: 'Poppins', sans-serif;
+    
 }
 
+.calculator__screen {
+    text-align: right;
+}
 
-.calculator__buttons {
+.rows {
     display: flex;
-    flex-direction: column;
+    gap: 30px;
+    justify-content: space-between;
+}
+
+.row div:nth-child(1) {
+    margin-bottom: 15px;
+}
+
+.btn {
+    cursor: pointer;
+    user-select: none;
+    text-align: center;
+}
+
+.red {
+    color: #FF3A3A;
+}
+
+.equally {
+    background-color: #FF3A3A;
+    padding: 0 10px 0 10px;
+    border-radius: 5px;
+    color: #FFFFFF;
 }
