@@ -8,7 +8,7 @@ const action = ["-", "+", "×", "÷"];
 
 const out = document.querySelector(".calculator__screen p");
 
-function clearALl() {
+function clearAll() {
     first = "";
     second = "";
     sign = "";
@@ -16,14 +16,62 @@ function clearALl() {
     out.textContent = 0;
 }
 
-document.querySelector(".clear").onClick = clearALl;
+document.querySelector('.clear').addEventListener('click', clearAll)
 
-let keys = document.querySelectorAll(".btn");
-console.log(keys);
+const keys = document.querySelectorAll('.btn');
 keys.forEach(element => {
-    element.addEventListener('click', calc)    
+    element.addEventListener('click', calc);
 });
 
-function calc(el) {
-    
+function calc(e) {
+    const key = this.textContent;
+
+    if (digit.includes(key)){
+        if (second === '' && sign === ''){
+            first += key;
+            out.textContent = first;
+            console.log(first, second, sign);
+        }
+        else if (!first === '' && !second === '' && finish){
+            second = key;
+            finish = false;
+            out.textContent = second;
+        }
+        else {
+            second += key;
+            out.textContent = second;
+            console.log(first, second, sign);
+        }
+    }
+
+    if (action.includes(key)){
+        sign = key;
+        out.textContent = sign;
+        second = '';
+        console.log(first, second, sign);
+    }
+
+    if (key == '='){
+        if (second === '') second = first;
+        switch (sign) {
+            case '+':
+                first = (+first) + (+second);
+                break;
+            case '×':
+                first = first * second;
+                break;
+            case '-':
+                first = first - second;
+                break;
+            case '÷':
+                if (second === '0') {
+                    clearAll();
+                    return;
+                }
+                first = first / second;
+                break;
+        }
+        finish = true;
+        out.textContent = first;
+    }
 }
